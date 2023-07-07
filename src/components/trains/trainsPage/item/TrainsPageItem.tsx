@@ -11,10 +11,10 @@ interface ITrainsPageItem {
 export const TrainsPageItem: FC<ITrainsPageItem> = ({train,index}) => {
     return (
         <tr>
-            <td>
-                <Link to={`${PATH.TRAIN_INFO}/${index}`}>{train.name}</Link>
+            <td style={{paddingRight:"10px", borderBottom:"2px solid black"}}>
+                <Link to={`${PATH.TRAIN_INFO}/${index}`} style={{textDecoration:"none"}}>{train.name}</Link>
             </td>
-            <td>{train.description}</td>
+            <td style={{borderBottom:"2px solid black"}}>{train.description}</td>
         </tr>
     );
 };

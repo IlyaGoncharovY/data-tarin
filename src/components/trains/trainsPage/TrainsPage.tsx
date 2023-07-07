@@ -15,8 +15,8 @@ export const TrainsPage = React.memo(() => {
 
     return (
         <div>
-            <h1>Поезда</h1>
-            <table>
+            <h1 style={{textAlign:"center"}}>Поезда</h1>
+            <table style={{margin: "auto"}}>
                 <thead>
                 <tr>
                     <th>Название</th>
