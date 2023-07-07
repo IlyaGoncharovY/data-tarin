@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/data-tarin/static/css/main.b165aa17.css",
+    "main.js": "/data-tarin/static/js/main.15c0a13d.js",
+    "static/js/787.39debb33.chunk.js": "/data-tarin/static/js/787.39debb33.chunk.js",
+    "index.html": "/data-tarin/index.html",
+    "main.b165aa17.css.map": "/data-tarin/static/css/main.b165aa17.css.map",
+    "main.15c0a13d.js.map": "/data-tarin/static/js/main.15c0a13d.js.map",
+    "787.39debb33.chunk.js.map": "/data-tarin/static/js/787.39debb33.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b165aa17.css",
+    "static/js/main.15c0a13d.js"
+  ]
+}
