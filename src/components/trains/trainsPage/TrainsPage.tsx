@@ -12,7 +12,7 @@ export const TrainsPage = () => {
 
     useEffect(() => {
         dispatch(getTrainsSuccessTC())
-    }, [])
+    }, [dispatch])
 
     return (
         <div>

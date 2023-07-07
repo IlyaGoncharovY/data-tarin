@@ -30,11 +30,16 @@ export const TrainsInfoItem: FC<ITrainsInfoItem> = ({characteristics}) => {
                 {characteristics.map((item, index) =>
                     <ItemCharacteristics key={index} item={item}/>
                 )}
-                <button onClick={backToTrainListHandler}>Вернуться к списку поездов</button>
-                <button>Отправить данные</button>
+                <tr>
+                    <th>
+                        <button onClick={backToTrainListHandler}>Вернуться к списку поездов</button>
+                    </th>
+                    <th>
+                        <button>Отправить данные</button>
+                    </th>
+                </tr>
                 </tbody>
             </table>
         </div>
     );
 };
-
