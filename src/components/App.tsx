@@ -1,6 +1,5 @@
 import React from 'react';
 import {Navigate, Route, Routes} from 'react-router-dom';
-import '../App.css';
 import {PATH} from "../utils/PATH/path";
 import {TrainsPage} from "./trains/trainsPage/TrainsPage";
 import {TrainInfo} from "./trains/trainInfo/TrainInfo";
