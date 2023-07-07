@@ -1,20 +1,18 @@
 import React, {FC} from 'react';
 import {ResponseDataTrainTypeChildCharacteristics} from "../../../../api/getDataTrain";
 import {ItemCharacteristics} from "./itemCharacteristics/ItemCharacteristics";
-import {useNavigate} from "react-router-dom";
-import {PATH} from "../../../../utils/PATH/path";
+import {ButtonBackToTrains} from "../../../../common/universalComponents/ButtonBackToTrains";
+import {useTrainsCharacteristics} from "../../../../utils/customHook/useTrainsCharacteristics";
 
 interface ITrainsInfoItem {
-    characteristics: ResponseDataTrainTypeChildCharacteristics[]
+    characteristics: ResponseDataTrainTypeChildCharacteristics[];
 }
 
-export const TrainsInfoItem: FC<ITrainsInfoItem> = ({characteristics}) => {
+export type fieldType = "engineAmperage" | "force" | "speed"
 
-    const navigate = useNavigate()
+export const TrainsInfoItem: FC<ITrainsInfoItem> = ({ characteristics }) => {
 
-    const backToTrainListHandler = () => {
-        navigate(PATH.TRAINS_PAGE)
-    }
+    const {editedCharacteristics, handleInputChange, validateInputs, handleSendData} = useTrainsCharacteristics(characteristics)
 
     return (
         <div>
@@ -27,15 +25,22 @@ export const TrainsInfoItem: FC<ITrainsInfoItem> = ({characteristics}) => {
                 </tr>
                 </thead>
                 <tbody>
-                {characteristics.map((item, index) =>
-                    <ItemCharacteristics key={index} item={item}/>
-                )}
+                {editedCharacteristics.map((item, index) => (
+                    <ItemCharacteristics
+                        key={index}
+                        item={item}
+                        index={index}
+                        handleInputChange={handleInputChange}
+                    />
+                ))}
                 <tr>
                     <th>
-                        <button onClick={backToTrainListHandler}>Вернуться к списку поездов</button>
+                        <ButtonBackToTrains/>
                     </th>
                     <th>
-                        <button>Отправить данные</button>
+                        <button onClick={handleSendData} disabled={!validateInputs()}>
+                            Отправить данные
+                        </button>
                     </th>
                 </tr>
                 </tbody>

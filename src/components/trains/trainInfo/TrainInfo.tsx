@@ -2,6 +2,7 @@ import React from 'react';
 import {useAppSelector} from "../../../store/config/hooks";
 import {TrainsInfoItem} from "./item/TrainsInfoItem";
 import {useParams} from "react-router-dom";
+import {NotFound} from "../../../common/universalComponents/NotFound";
 
 export const TrainInfo = () => {
 
@@ -11,7 +12,7 @@ export const TrainInfo = () => {
     const selectedTrain = trains[Number(trainId)]
 
     if (!selectedTrain) {
-        return <div>Train not found</div>
+        return <NotFound/>
     }
 
     return (
@@ -29,7 +30,7 @@ export const TrainInfo = () => {
                 </tbody>
             </table>
             <h2>Характеристики</h2>
-            <TrainsInfoItem characteristics={selectedTrain.characteristics} />
+            <TrainsInfoItem characteristics={selectedTrain.characteristics}/>
         </div>
     );
 };
