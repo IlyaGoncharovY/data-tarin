@@ -4,8 +4,7 @@ import {getTrainsSuccessTC} from "../../../store/slices/TrainSlice";
 import {TrainsPageItem} from "./item/TrainsPageItem";
 
 
-export const TrainsPage = () => {
-
+export const TrainsPage = React.memo(() => {
     const trains = useAppSelector(state => state.trains.trains)
 
     const dispatch = useAppDispatch()
@@ -32,4 +31,4 @@ export const TrainsPage = () => {
             </table>
         </div>
     );
-};
+});
