@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from "../../../store/config/hooks";
-import {TrainsPageItem} from "./item/TrainsPageItem";
 import {getTrainsSuccessTC} from "../../../store/slices/TrainSlice";
+import {TrainsPageItem} from "./item/TrainsPageItem";
 
 
 export const TrainsPage = () => {
@@ -16,7 +16,7 @@ export const TrainsPage = () => {
 
     return (
         <div>
-            Поезда
+            <h1>Поезда</h1>
             <table>
                 <thead>
                 <tr>
@@ -25,12 +25,11 @@ export const TrainsPage = () => {
                 </tr>
                 </thead>
                 <tbody>
-                {trains.map((train, index) => (
-                    <TrainsPageItem key={index} train={train} />
-                ))}
+                {trains.map((train, index) =>
+                    <TrainsPageItem key={index} train={train} index={index} />
+                )}
                 </tbody>
             </table>
         </div>
-
     );
 };
