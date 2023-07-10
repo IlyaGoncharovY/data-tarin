@@ -1,0 +1,12 @@
+import React from 'react';
+
+export const Loader = () => {
+    return (
+        <div>
+            <h1>
+                .....Загружаем информацию
+            </h1>
+        </div>
+    );
+};
+

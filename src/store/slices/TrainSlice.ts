@@ -4,36 +4,44 @@ import {AppThunk} from "../config/store";
 
 interface initialStateType {
     trains: ResponseDataTrainTypeChild[]
+    loading: boolean
 }
 
 const initialState: initialStateType = {
-    trains: []
+    trains: [],
+    loading: false
 }
 
 const trainSlice = createSlice({
     name: "TRAIN/getTrain",
     initialState,
     reducers: {
-        getTrainsSuccess: (state, action:PayloadAction<ResponseDataTrainTypeChild[]>) => {
+        getTrainsSuccess: (state, action: PayloadAction<ResponseDataTrainTypeChild[]>) => {
             state.trains = action.payload
+        },
+        setTrainsLoading: (state, action: PayloadAction<boolean>) => {
+            state.loading = action.payload
         }
     }
 })
 
-export const {getTrainsSuccess} = trainSlice.actions
+export const {getTrainsSuccess, setTrainsLoading} = trainSlice.actions
 
-export const getTrainsSuccessTC = ():AppThunk =>
+export const getTrainsSuccessTC = (): AppThunk =>
     async (dispatch) => {
-    try {
-        const res = await getDataTrain.getData()
-        if (res.data) {
-            dispatch(getTrainsSuccess(res.data))
+        dispatch(setTrainsLoading(true))
+        try {
+            const res = await getDataTrain.getData()
+            dispatch(setTrainsLoading(false))
+            if (res.data) {
+                dispatch(getTrainsSuccess(res.data))
+            }
+
+        } catch (e) {
+            console.log({e})
         }
-    } catch (e) {
-        console.log({e})
+
     }
-  
-}
 
 
 export default trainSlice.reducer

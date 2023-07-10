@@ -2,10 +2,13 @@ import React, {useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from "../../../store/config/hooks";
 import {getTrainsSuccessTC} from "../../../store/slices/TrainSlice";
 import {TrainsPageItem} from "./item/TrainsPageItem";
+import {Loader} from "../../../common/universalComponents/Loader";
 
 
 export const TrainsPage = React.memo(() => {
+
     const trains = useAppSelector(state => state.trains.trains)
+    const loading = useAppSelector(state => state.trains.loading)
 
     const dispatch = useAppDispatch()
 
@@ -16,19 +19,24 @@ export const TrainsPage = React.memo(() => {
     return (
         <div>
             <h1 style={{textAlign:"center"}}>Поезда</h1>
-            <table style={{margin: "auto"}}>
-                <thead>
-                <tr>
-                    <th>Название</th>
-                    <th>Описание</th>
-                </tr>
-                </thead>
-                <tbody>
-                {trains.map((train, index) =>
-                    <TrainsPageItem key={index} train={train} index={index} />
+            {loading ?
+                (
+                    <Loader/>
+                ) : (
+                    <table style={{margin: "auto"}}>
+                        <thead>
+                        <tr>
+                            <th>Название</th>
+                            <th>Описание</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {trains.map((train, index) =>
+                            <TrainsPageItem key={index} train={train} index={index} />
+                        )}
+                        </tbody>
+                    </table>
                 )}
-                </tbody>
-            </table>
         </div>
     );
 });
