@@ -1,15 +1,23 @@
-import React, {ChangeEvent, FC} from 'react';
+import React, {FC} from 'react';
 import {ResponseDataTrainTypeChildCharacteristics} from "../../../../../api/getDataTrain";
 import {fieldType} from "../TrainsInfoItem";
-import s from "./ItemCharacteristics.module.css"
+import {InputForCharacteristics} from "../../../../../common/universalComponents/InputForCharacteristics";
 
 interface IItemCharacteristics {
     item: ResponseDataTrainTypeChildCharacteristics
     index: number
     handleInputChange: (index: number, field: fieldType, value: string) => void
+    addRowHandler: () => void
+    deleteRowHandler: () => void
 }
 
-export const ItemCharacteristics: FC<IItemCharacteristics> = ({item, index, handleInputChange}) => {
+export const ItemCharacteristics: FC<IItemCharacteristics> = ({
+                                                                  item,
+                                                                  index,
+                                                                  handleInputChange,
+                                                                  addRowHandler,
+                                                                  deleteRowHandler
+                                                              }) => {
     const {engineAmperage, force, speed} = item
 
     const isFieldValid = (field: fieldType, value: string) => {
@@ -26,37 +34,34 @@ export const ItemCharacteristics: FC<IItemCharacteristics> = ({item, index, hand
     };
 
     const handleFieldChange = (field: fieldType, value: string) => {
-        handleInputChange(index, field as fieldType, value)
+        handleInputChange(index, field, value)
     }
 
     return (
         <tr>
+            <InputForCharacteristics
+                valueForCharacteristics={engineAmperage}
+                handleFieldChange={handleFieldChange}
+                isFieldValid={isFieldValid}
+                field={"engineAmperage"}
+            />
+            <InputForCharacteristics
+                valueForCharacteristics={force}
+                handleFieldChange={handleFieldChange}
+                isFieldValid={isFieldValid}
+                field={"force"}
+            />
+            <InputForCharacteristics
+                valueForCharacteristics={speed}
+                handleFieldChange={handleFieldChange}
+                isFieldValid={isFieldValid}
+                field={"speed"}
+            />
             <td>
-                <input
-                    type="number"
-                    value={engineAmperage}
-                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                        handleFieldChange('engineAmperage', e.currentTarget.value)}
-                    className={!isFieldValid('engineAmperage', engineAmperage.toString()) ? s.invalid : ''}
-                />
+                <button onClick={addRowHandler}>+</button>
             </td>
             <td>
-                <input
-                    type="number"
-                    value={force}
-                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                        handleFieldChange('force', e.currentTarget.value)}
-                    className={!isFieldValid('force', force.toString()) ? s.invalid : ''}
-                />
-            </td>
-            <td>
-                <input
-                    type="number"
-                    value={speed}
-                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                        handleFieldChange('speed', e.currentTarget.value)}
-                    className={!isFieldValid('speed', speed.toString()) ? s.invalid : ''}
-                />
+                <button onClick={deleteRowHandler}>-</button>
             </td>
         </tr>
     );

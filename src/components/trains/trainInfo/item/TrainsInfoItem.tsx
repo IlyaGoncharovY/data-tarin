@@ -12,7 +12,10 @@ export type fieldType = "engineAmperage" | "force" | "speed"
 
 export const TrainsInfoItem: FC<ITrainsInfoItem> = ({ characteristics }) => {
 
-    const {editedCharacteristics, handleInputChange, validateInputs, handleSendData} = useTrainsCharacteristics(characteristics)
+    const {editedCharacteristics,
+        handleInputChange,
+        validateInputs,
+        handleSendData, addRowHandler, deleteRowHandler} = useTrainsCharacteristics(characteristics)
 
     return (
         <div>
@@ -31,6 +34,8 @@ export const TrainsInfoItem: FC<ITrainsInfoItem> = ({ characteristics }) => {
                         item={item}
                         index={index}
                         handleInputChange={handleInputChange}
+                        addRowHandler={() => addRowHandler(index)}
+                        deleteRowHandler={() => deleteRowHandler(index)}
                     />
                 ))}
                 <tr>
