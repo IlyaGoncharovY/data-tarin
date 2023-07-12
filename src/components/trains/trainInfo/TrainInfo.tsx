@@ -4,11 +4,10 @@ import {TrainsInfoItem} from "./item/TrainsInfoItem";
 import {useParams} from "react-router-dom";
 import {NotFound} from "../../../common/universalComponents/NotFound";
 
-export const TrainInfo = () => {
+export const TrainInfo = React.memo(() => {
+    const {trains} = useAppSelector(state => state.trains)
 
-    const trains = useAppSelector(state => state.trains.trains)
-
-    const { trainId } = useParams<{ trainId: string }>()
+    const {trainId} = useParams<{ trainId: string }>()
     const selectedTrain = trains[Number(trainId)]
 
     if (!selectedTrain) {
@@ -33,5 +32,5 @@ export const TrainInfo = () => {
             <TrainsInfoItem characteristics={selectedTrain.characteristics}/>
         </div>
     );
-};
+});
 

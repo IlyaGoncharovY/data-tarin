@@ -1,8 +1,8 @@
 import React from 'react';
 import {Navigate, Route, Routes} from 'react-router-dom';
-import {PATH} from "../utils/PATH/path";
-import {TrainsPage} from "./trains/trainsPage/TrainsPage";
-import {TrainInfo} from "./trains/trainInfo/TrainInfo";
+import {PATH} from "./utils/PATH/path";
+import {TrainsPage} from "./components/trains/trainsPage/TrainsPage";
+import {TrainInfo} from "./components/trains/trainInfo/TrainInfo";
 
 function App() {
     return (
